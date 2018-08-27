@@ -8,27 +8,20 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 
-BUFFER_SIZE = int(1e5)  # replay buffer size
-BATCH_SIZE = 64         # minibatch size
-GAMMA = 0.99            # discount factor
-TAU = 1e-3              # for soft update of target parameters
-LR = 5e-4               # learning rate 
-UPDATE_EVERY = 4        # how often to update the network
+from constatns import *
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class Agent():
-    """Interacts with and learns from the environment."""
+    """Interacts with and learns from the environment.
+    
+    Attributes:
+        state_size (int): dimension of each state
+        action_size (int): dimension of each action
+        seed (int): random seed
+    """
 
     def __init__(self, state_size, action_size, seed, filename=None):
-        """Initialize an Agent object.
-        
-        Params
-        ======
-            state_size (int): dimension of each state
-            action_size (int): dimension of each action
-            seed (int): random seed
-        """
+        """Initialize an Agent object."""
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)
