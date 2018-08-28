@@ -21,7 +21,11 @@ class Agent():
     """
 
     def __init__(self, state_size, action_size, seed, filename=None):
-        """Initialize an Agent object."""
+        """Initialize an Agent object.
+        
+        Args:
+            filename: path of .pth file with trained weights
+        """
         self.state_size = state_size
         self.action_size = action_size
         self.seed = random.seed(seed)
@@ -56,8 +60,7 @@ class Agent():
     def act(self, state, eps=0.):
         """Returns actions for given state as per current policy.
         
-        Params
-        ======
+        Args:
             state (array_like): current state
             eps (float): epsilon, for epsilon-greedy action selection
         """
@@ -76,8 +79,7 @@ class Agent():
     def learn(self, experiences, gamma):
         """Update value parameters using given batch of experience tuples.
 
-        Params
-        ======
+        Args:
             experiences (Tuple[torch.Variable]): tuple of (s, a, r, s', done) tuples 
             gamma (float): discount factor
         """
@@ -99,8 +101,7 @@ class Agent():
         """Soft update model parameters.
         θ_target = τ*θ_local + (1 - τ)*θ_target
 
-        Params
-        ======
+        Args:
             local_model (PyTorch model): weights will be copied from
             target_model (PyTorch model): weights will be copied to
             tau (float): interpolation parameter 
@@ -110,18 +111,17 @@ class Agent():
 
 
 class ReplayBuffer:
-    """Fixed-size buffer to store experience tuples."""
+    """Fixed-size buffer to store experience tuples.
+    
+    Attributes:
+        action_size (int): dimension of each action
+        buffer_size (int): maximum size of buffer
+        batch_size (int): size of each training batch
+        seed (int): random seed 
+    """
 
     def __init__(self, action_size, buffer_size, batch_size, seed):
-        """Initialize a ReplayBuffer object.
-
-        Params
-        ======
-            action_size (int): dimension of each action
-            buffer_size (int): maximum size of buffer
-            batch_size (int): size of each training batch
-            seed (int): random seed
-        """
+        """Initialize a ReplayBuffer object."""
         self.action_size = action_size
         self.memory = deque(maxlen=buffer_size)  
         self.batch_size = batch_size
