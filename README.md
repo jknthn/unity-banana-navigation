@@ -1,5 +1,7 @@
 # Unity Banana Navigation
 
+![banana](images/banana-intro.gif)
+
 ## Project details
 
 Project created as 1st project on Udacity Deep Reinforcement Learning nanodegree. The goal of the agent is to gather `yellow` bananas while avoiding the `blue` ones. Here are Unity details of the environment:
